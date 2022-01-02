@@ -1,4 +1,4 @@
-﻿namespace TransferHelper.Models
+﻿    namespace TransferHelper.Models
 {
     public class Player
     {
@@ -7,7 +7,7 @@
         public string Surname { get; set; } = string.Empty;
         public DateTime Birthdate { get; set; }
         public Guid PositionId { get; set; }
-        public PlayerPosition? PositionName { get; set; }
+        public PlayerPosition? Position { get; set; }
 
     }
 }
