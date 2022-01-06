@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PlayerApiService } from 'src/app/player-api.service';
 
 @Component({
   selector: 'app-show-player',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowPlayerComponent implements OnInit {
 
-  constructor() { }
+  playerList$!:Observable<any[]>;
+  positionsList$!:Observable<any[]>; 
+  positionsList:any=[];
+
+  positionsMap:Map<number,string> = new Map()
+
+
+  constructor(private service:PlayerApiService) { }
 
   ngOnInit(): void {
+    this.playerList$ = this.service.getPlayerList();
   }
 
 }
