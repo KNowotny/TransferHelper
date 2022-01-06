@@ -11,6 +11,8 @@ export class PlayerApiService {
 
   constructor(private http:HttpClient) { }
 
+  //Player
+
   getPlayerList():Observable<any[]> {
     return this.http.get<any>(this.playerAPIUrl + 'players');
   }
@@ -21,5 +23,19 @@ export class PlayerApiService {
 
   deletePlayer(id:number|string){
      return this.http.delete(this.playerAPIUrl + `/players/${id}`)
+  }
+
+  //Position
+
+  getPlayerPositionsList():Observable<any[]> {
+    return this.http.get<any>(this.playerAPIUrl + '/playerPositions');
+  }
+  
+  addPosition(data:any) {
+    return this.http.post(this.playerAPIUrl + '/playerPositions', data);
+  }
+
+  deletePosition(id:number|string){
+     return this.http.delete(this.playerAPIUrl + `/playerPositions/${id}`)
   }
 }
