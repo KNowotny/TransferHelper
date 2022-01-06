@@ -21,7 +21,17 @@ export class ShowPlayerComponent implements OnInit {
   ngOnInit(): void {
     this.playerList$ = this.service.getPlayerList();
     this.positionsList$ = this.service.getPositionsList();
-
+    this.refreshPlayersPositionMap();
   }
 
+  refreshPlayersPositionMap() {
+    this.service.getPositionsList().subscribe(data => {
+      this.positionsList = data;
+
+      for(let i = 0; i < data.length; i++)
+      {
+        this.positionsMap.set(this.positionsList[i].id, this.positionsList[i].positionName);
+      }
+    })
+  }
 }
