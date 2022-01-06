@@ -13,13 +13,15 @@ export class ShowPlayerComponent implements OnInit {
   positionsList$!:Observable<any[]>; 
   positionsList:any=[];
 
-  positionsMap:Map<number,string> = new Map()
+  positionsMap:Map<number, string> = new Map()
 
 
   constructor(private service:PlayerApiService) { }
 
   ngOnInit(): void {
     this.playerList$ = this.service.getPlayerList();
+    this.positionsList$ = this.service.getPositionsList();
+
   }
 
 }

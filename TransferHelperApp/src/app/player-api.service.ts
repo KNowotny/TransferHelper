@@ -14,7 +14,7 @@ export class PlayerApiService {
   //Player
 
   getPlayerList():Observable<any[]> {
-    return this.http.get<any>(this.playerAPIUrl + 'players');
+    return this.http.get<any>(this.playerAPIUrl + '/players');
   }
   
   addPlayer(data:any) {
@@ -27,7 +27,7 @@ export class PlayerApiService {
 
   //Position
 
-  getPlayerPositionsList():Observable<any[]> {
+  getPositionsList():Observable<any[]> {
     return this.http.get<any>(this.playerAPIUrl + '/playerPositions');
   }
   
