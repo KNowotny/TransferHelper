@@ -1,3 +1,5 @@
+import {HttpClientModule} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -6,6 +8,7 @@ import { AppComponent } from './app.component';
 import { PlayerComponent } from './player/player.component';
 import { ShowPlayerComponent } from './player/show-player/show-player.component';
 import { AddEditPlayerComponent } from './player/add-edit-player/add-edit-player.component';
+import { PlayerApiService } from './player-api.service';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,12 @@ import { AddEditPlayerComponent } from './player/add-edit-player/add-edit-player
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [PlayerApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
