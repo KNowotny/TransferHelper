@@ -26,7 +26,7 @@ namespace TransferHelper.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
         {
-            return await _context.Players.ToListAsync();
+            return await _context.Players.OrderBy(e => e.PositionId).OrderByDescending(e => e.Surname).OrderByDescending(e => e.Name).ToListAsync();
         }
 
         // GET: api/Players/5
