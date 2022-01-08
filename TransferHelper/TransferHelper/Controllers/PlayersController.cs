@@ -23,14 +23,14 @@ namespace TransferHelper.Controllers
         }
 
         // GET: api/Players
-        [HttpGet]
+        [HttpGet(Name = "[action]")]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayers()
         {
             return await _context.Players.ToListAsync();
         }
 
         // GET: api/Players/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "[action]")]
         public async Task<ActionResult<Player>> GetPlayer(Guid id)
         {
             var player = await _context.Players.FindAsync(id);
@@ -45,7 +45,7 @@ namespace TransferHelper.Controllers
 
         // PUT: api/Players/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id}", Name = "[action]")]
         public async Task<IActionResult> PutPlayer(Guid id, Player player)
         {
             if (id != player.Id)
@@ -76,7 +76,7 @@ namespace TransferHelper.Controllers
 
         // POST: api/Players
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost(Name = "[action]")]
         public async Task<ActionResult<Player>> PostPlayer(Player player)
         {
             _context.Players.Add(player);
@@ -86,7 +86,7 @@ namespace TransferHelper.Controllers
         }
 
         // DELETE: api/Players/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}", Name = "[action]")]
         public async Task<IActionResult> DeletePlayer(Guid id)
         {
             var player = await _context.Players.FindAsync(id);

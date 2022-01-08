@@ -23,14 +23,14 @@ namespace TransferHelper.Controllers
         }
 
         // GET: api/PlayerPositions
-        [HttpGet]
+        [HttpGet(Name = "[action]")]
         public async Task<ActionResult<IEnumerable<PlayerPosition>>> GetPlayerPositions()
         {
             return await _context.PlayerPositions.ToListAsync();
         }
 
         // GET: api/PlayerPositions/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "[action]")]
         public async Task<ActionResult<PlayerPosition>> GetPlayerPosition(Guid id)
         {
             var playerPosition = await _context.PlayerPositions.FindAsync(id);
@@ -45,7 +45,7 @@ namespace TransferHelper.Controllers
 
         // PUT: api/PlayerPositions/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id}", Name = "[action]")]
         public async Task<IActionResult> PutPlayerPosition(Guid id, PlayerPosition playerPosition)
         {
             if (id != playerPosition.Id)
@@ -76,7 +76,7 @@ namespace TransferHelper.Controllers
 
         // POST: api/PlayerPositions
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost(Name = "[action]")]
         public async Task<ActionResult<PlayerPosition>> PostPlayerPosition(PlayerPosition playerPosition)
         {
             _context.PlayerPositions.Add(playerPosition);
@@ -86,7 +86,7 @@ namespace TransferHelper.Controllers
         }
 
         // DELETE: api/PlayerPositions/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}", Name = "[action]")]
         public async Task<IActionResult> DeletePlayerPosition(Guid id)
         {
             var playerPosition = await _context.PlayerPositions.FindAsync(id);
