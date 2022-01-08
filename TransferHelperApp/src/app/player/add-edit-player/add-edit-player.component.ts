@@ -30,4 +30,34 @@ export class AddEditPlayerComponent implements OnInit {
     this.playerList$ = this.service.getPlayerList();
     this.positionsList$ = this.service.getPositionsList();
   }
+
+  addPlayer(){
+    var player = {
+      name:this.name,
+      surname:this.surname,
+      birthdate:this.birthdate,
+      positionId:this.positionId
+    }
+    this.service.addPlayer(player).subscribe(res => {
+      var closeModalBtn = document.getElementById('add-edit-modal-close');
+      if(closeModalBtn) {
+        closeModalBtn.click();
+      }
+
+      var showAddSuccess = document.getElementById('add-success-alert');
+      if(showAddSuccess){
+        showAddSuccess.style.display = "block";
+      }
+
+      setTimeout(function() {
+        if(showAddSuccess){
+          showAddSuccess.style.display = "none";
+        }
+      }, 4000);
+    })
+  }
+
+  updatePlayer(){
+
+  }
 }

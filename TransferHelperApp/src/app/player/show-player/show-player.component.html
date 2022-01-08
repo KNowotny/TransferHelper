@@ -29,6 +29,18 @@
     </tbody>
 </table>
 
+<div class="alert alert-success" role="alert" id="add-success-alert">
+  Player successfully added
+</div>
+
+<div class="alert alert-success" role="alert" id="update-success-alert">
+  Player successfully updated
+</div>
+
+<div class="alert alert-success" role="alert" id="delete-success-alert">
+  Player successfully deleted
+</div>
+
   <!-- Show player position Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -48,13 +60,14 @@
 
 
 
-<!-- Add new player Modal -->
+<!-- Add or edit player Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">{{modalTitle}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="modalClose()" id='add-edit-modal-close'></button>
       </div>
       <div class="modal-body">
         <app-add-edit-player [player]="player" *ngIf="activateAddEditPlayerComponent"> </app-add-edit-player>

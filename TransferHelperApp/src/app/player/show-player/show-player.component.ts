@@ -41,6 +41,11 @@ export class ShowPlayerComponent implements OnInit {
     this.activateAddEditPlayerComponent = true;
   }
 
+  modalClose(){
+    this.activateAddEditPlayerComponent = false;
+    this.playerList$ = this.service.getPlayerList();
+  }
+
   refreshPlayersPositionMap() {
     this.service.getPositionsList().subscribe(data => {
       this.positionsList = data;

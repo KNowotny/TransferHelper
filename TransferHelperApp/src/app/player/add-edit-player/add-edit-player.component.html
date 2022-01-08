@@ -1,5 +1,5 @@
 <form>
-    <div class="mb3">
+    <div class="mb-3">
         <label for="positionId" class="form-label">Player Position</label>
         <!--<input type="text" calss="form-control" name="positionId" [(ngModel)]="positionId"
         *ngIf="player.id!=0" disabled> -->
@@ -8,4 +8,22 @@
             <option *ngFor="let type of positionsList$|async" [value]="type.id">{{type.positionName}}</option>
     </select>
     </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="name" name="name">
+    </div>
+    <div class="mb-3">
+        <label for="surname" class="form-label">Surame</label>
+        <input type="text" class="form-control" [(ngModel)]="surname" name="surname">
+    </div>
+    <div class="mb-3">
+        <label for="birthdate" class="form-label">Birthdate</label>
+        <input type="date" class="form-control" [(ngModel)]="birthdate" name="birthdate">
+    </div>
+    <button (click)="addPlayer()" *ngIf="player.id==0" class="btn btn-primary m-1">
+        Add
+    </button>
+    <button (click)="updatePlayer()" *ngIf="player.id==0" class="btn btn-primary m-1">
+        Update
+    </button>
 </form>
