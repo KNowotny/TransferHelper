@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PlayerApiService } from 'src/app/player-api.service';
 
 @Component({
   selector: 'app-add-edit-player',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddEditPlayerComponent implements OnInit {
 
-  constructor() { }
+  playerList$!:Observable<any[]>;
+  positionsList$!:Observable<any[]>;
+
+  constructor(private service:PlayerApiService) { }
+
+  @Input() player:any;
+  id: number = 0;
+  name: string = "";
+  surname: string = "";
+  birthdate: string = "";
+  positionId!: number;
 
   ngOnInit(): void {
+    this.id = this.player.id;
+    this.name = this.player.name;
+    this.surname = this.player.surname;
+    this.birthdate = this.player.birthdate;
+    this.positionId = this.positionId;
+    this.playerList$ = this.service.getPlayerList();
+    this.positionsList$ = this.service.getPositionsList();
   }
-
 }
