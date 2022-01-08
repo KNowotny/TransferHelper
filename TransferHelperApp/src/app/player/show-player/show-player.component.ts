@@ -13,8 +13,9 @@ export class ShowPlayerComponent implements OnInit {
   positionsList$!:Observable<any[]>; 
   positionsList:any=[];
 
-  positionsMap:Map<number, string> = new Map()
 
+  //Map
+  positionsMap:Map<number, string> = new Map()
 
   constructor(private service:PlayerApiService) { }
 
@@ -22,6 +23,22 @@ export class ShowPlayerComponent implements OnInit {
     this.playerList$ = this.service.getPlayerList();
     this.positionsList$ = this.service.getPositionsList();
     this.refreshPlayersPositionMap();
+  }
+
+  modalTitle:string = '';
+  activateAddEditPlayerComponent:boolean = false;
+  player:any;
+
+  modalAdd(){
+    this.player = {
+      id:0,
+      name:null,
+      surname:null,
+      birthdate:null,
+      position:null
+    }
+    this.modalTitle = "Add Player";
+    this.activateAddEditPlayerComponent = true;
   }
 
   refreshPlayersPositionMap() {
