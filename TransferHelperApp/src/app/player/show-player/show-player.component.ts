@@ -53,6 +53,28 @@ export class ShowPlayerComponent implements OnInit {
     this.activateAddEditPlayerComponent = true;
   }
 
+  delete(item:any){
+    if(confirm(`Are you sure you want delete player ${item.name} ${item.surname}?`)){
+      this.service.deletePlayer(item.id).subscribe(res => {
+        var deleteModalBtn = document.getElementById('add-edit-modal-close');
+        if(deleteModalBtn) {
+          deleteModalBtn.click();
+        }
+  
+        var showDeleteSuccess = document.getElementById('delete-success-alert');
+        if(showDeleteSuccess){
+          showDeleteSuccess.style.display = "block";
+        }
+  
+        setTimeout(function() {
+          if(showDeleteSuccess){
+            showDeleteSuccess.style.display = "none";
+          }
+        }, 4000);
+      })
+    }
+  }
+
   refreshPlayersPositionMap() {
     this.service.getPositionsList().subscribe(data => {
       this.positionsList = data;
