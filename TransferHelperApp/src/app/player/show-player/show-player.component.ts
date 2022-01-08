@@ -1,3 +1,4 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PlayerApiService } from 'src/app/player-api.service';
@@ -44,6 +45,12 @@ export class ShowPlayerComponent implements OnInit {
   modalClose(){
     this.activateAddEditPlayerComponent = false;
     this.playerList$ = this.service.getPlayerList();
+  }
+
+  modalEdit(item:any){
+    this.player = item;
+    this.modalTitle = "EditPlayer";
+    this.activateAddEditPlayerComponent = true;
   }
 
   refreshPlayersPositionMap() {

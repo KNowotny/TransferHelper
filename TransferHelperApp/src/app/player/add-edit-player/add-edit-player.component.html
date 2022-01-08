@@ -1,8 +1,8 @@
 <form>
     <div class="mb-3">
         <label for="positionId" class="form-label">Player Position</label>
-        <!--<input type="text" calss="form-control" name="positionId" [(ngModel)]="positionId"
-        *ngIf="player.id!=0" disabled> -->
+        <input type="text" calss="form-control" name="positionId" [(ngModel)]="positionId"
+        *ngIf="player.id!=0" disabled>
         <select class="form-control" name="positionId" id="positionId" [(ngModel)]="positionId"
         *ngIf="player.id==0">
             <option *ngFor="let type of positionsList$|async" [value]="type.id">{{type.positionName}}</option>
@@ -23,7 +23,7 @@
     <button (click)="addPlayer()" *ngIf="player.id==0" class="btn btn-primary m-1">
         Add
     </button>
-    <button (click)="updatePlayer()" *ngIf="player.id==0" class="btn btn-primary m-1">
+    <button (click)="updatePlayer()" *ngIf="player.id!=0" class="btn btn-primary m-1">
         Update
     </button>
 </form>

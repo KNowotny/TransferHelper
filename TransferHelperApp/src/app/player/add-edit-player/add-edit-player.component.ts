@@ -18,7 +18,7 @@ export class AddEditPlayerComponent implements OnInit {
   id: number = 0;
   name: string = "";
   surname: string = "";
-  birthdate: string = "";
+  birthdate: Date = new Date();
   positionId!: number;
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class AddEditPlayerComponent implements OnInit {
     this.name = this.player.name;
     this.surname = this.player.surname;
     this.birthdate = this.player.birthdate;
-    this.positionId = this.positionId;
+    this.positionId = this.player.positionId;
     this.playerList$ = this.service.getPlayerList();
     this.positionsList$ = this.service.getPositionsList();
   }
@@ -58,6 +58,30 @@ export class AddEditPlayerComponent implements OnInit {
   }
 
   updatePlayer(){
+    var player = {
+      id:this.id,
+      name:this.name,
+      surname:this.surname,
+      birthdate:this.birthdate,
+      positionId:this.positionId
+    }
+    var id:number = this.id;
+    this.service.updatePlayer(id, player).subscribe(res => {
+      var closeModalBtn = document.getElementById('add-edit-modal-close');
+      if(closeModalBtn) {
+        closeModalBtn.click();
+      }
 
+      var showUpdateSuccess = document.getElementById('update-success-alert');
+      if(showUpdateSuccess){
+        showUpdateSuccess.style.display = "block";
+      }
+
+      setTimeout(function() {
+        if(showUpdateSuccess){
+          showUpdateSuccess.style.display = "none";
+        }
+      }, 4000);
+    })
   }
 }

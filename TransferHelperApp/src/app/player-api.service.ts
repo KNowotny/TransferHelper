@@ -21,6 +21,10 @@ export class PlayerApiService {
     return this.http.post(this.playerAPIUrl + '/players', data);
   }
 
+  updatePlayer(id:number|string, data:any){
+    return this.http.put(this.playerAPIUrl + `/players/${id}`, data);
+ }
+
   deletePlayer(id:number|string){
      return this.http.delete(this.playerAPIUrl + `/players/${id}`)
   }
