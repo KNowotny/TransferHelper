@@ -9,13 +9,15 @@ import { PlayerComponent } from './player/player.component';
 import { ShowPlayerComponent } from './player/show-player/show-player.component';
 import { AddEditPlayerComponent } from './player/add-edit-player/add-edit-player.component';
 import { PlayerApiService } from './player-api.service';
+import { AddPositionComponent } from './player/add-position/add-position.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerComponent,
     ShowPlayerComponent,
-    AddEditPlayerComponent
+    AddEditPlayerComponent,
+    AddPositionComponent
   ],
   imports: [
     BrowserModule,

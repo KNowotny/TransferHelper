@@ -1,3 +1,8 @@
+<!-- Add new position trigger modal -->
+<button type="button" class="btn btn-primary float-end m-1" data-bs-toggle="modal" data-bs-target="#addPositionBackdrop">
+  Add position
+</button>
+
 <!-- Add new player trigger modal -->
 <button type="button" class="btn btn-primary float-end m-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
   (click)="modalAdd()">
@@ -19,8 +24,8 @@
         <th>Options</th>
     </thead>
     <tbody>
-        <tr *ngFor="let item of playerList$|async"> 
-            <td>{{item.id}}</td>
+        <tr *ngFor="let item of playerList$|async; let i = index"> 
+            <td>{{i + 1}}</td>
             <td>{{item.name}}</td>
             <td>{{item.surname}}</td>
             <td>{{item.birthdate | date:'mediumDate'}}</td>
@@ -75,8 +80,6 @@
     </div>
   </div>
 
-
-
 <!-- Add or edit player Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -88,6 +91,22 @@
       </div>
       <div class="modal-body">
         <app-add-edit-player [player]="player" *ngIf="activateAddEditPlayerComponent"> </app-add-edit-player>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add position Modal -->
+<div class="modal fade" id="addPositionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="modalClose()" id='add-position-modal-close'></button>
+      </div>
+      <div class="modal-body">
+        <app-add-position> </app-add-position>
       </div>
     </div>
   </div>

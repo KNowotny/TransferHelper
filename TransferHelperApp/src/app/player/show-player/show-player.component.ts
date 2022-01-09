@@ -45,6 +45,7 @@ export class ShowPlayerComponent implements OnInit {
   modalClose(){
     this.activateAddEditPlayerComponent = false;
     this.playerList$ = this.service.getPlayerList();
+    this.positionsList$ = this.service.getPositionsList();
   }
 
   modalEdit(item:any){
