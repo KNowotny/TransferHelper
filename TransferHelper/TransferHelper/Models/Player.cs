@@ -8,6 +8,5 @@
         public DateTime Birthdate { get; set; }
         public Guid PositionId { get; set; }
         public PlayerPosition? Position { get; set; }
-
     }
 }

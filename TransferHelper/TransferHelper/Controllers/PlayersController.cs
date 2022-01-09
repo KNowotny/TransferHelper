@@ -29,7 +29,7 @@ namespace TransferHelper.Controllers
             return await _context.Players.OrderBy(e => e.PositionId).OrderByDescending(e => e.Surname).OrderByDescending(e => e.Name).ToListAsync();
         }
 
-        // GET: api/Players/5
+        // GET: api/Players/<guid>
         [HttpGet("{id}")]
         public async Task<ActionResult<Player>> GetPlayer(Guid id)
         {
@@ -43,8 +43,7 @@ namespace TransferHelper.Controllers
             return player;
         }
 
-        // PUT: api/Players/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/Players/<guid>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPlayer(Guid id, Player player)
         {
@@ -75,7 +74,6 @@ namespace TransferHelper.Controllers
         }
 
         // POST: api/Players
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Player>> PostPlayer(Player player)
         {
@@ -85,7 +83,7 @@ namespace TransferHelper.Controllers
             return CreatedAtAction("GetPlayer", new { id = player.Id }, player);
         }
 
-        // DELETE: api/Players/5
+        // DELETE: api/Players/<guid>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePlayer(Guid id)
         {
