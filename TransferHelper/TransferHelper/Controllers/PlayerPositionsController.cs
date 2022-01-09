@@ -29,7 +29,7 @@ namespace TransferHelper.Controllers
             return await _context.PlayerPositions.ToListAsync();
         }
 
-        // GET: api/PlayerPositions/5
+        // GET: api/PlayerPositions/<guid>
         [HttpGet("{id}")]
         public async Task<ActionResult<PlayerPosition>> GetPlayerPosition(Guid id)
         {
@@ -43,8 +43,7 @@ namespace TransferHelper.Controllers
             return playerPosition;
         }
 
-        // PUT: api/PlayerPositions/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/PlayerPositions/<guid>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPlayerPosition(Guid id, PlayerPosition playerPosition)
         {
@@ -75,7 +74,6 @@ namespace TransferHelper.Controllers
         }
 
         // POST: api/PlayerPositions
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<PlayerPosition>> PostPlayerPosition(PlayerPosition playerPosition)
         {
@@ -85,7 +83,7 @@ namespace TransferHelper.Controllers
             return CreatedAtAction("GetPlayerPosition", new { id = playerPosition.Id }, playerPosition);
         }
 
-        // DELETE: api/PlayerPositions/5
+        // DELETE: api/PlayerPositions/<guid>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePlayerPosition(Guid id)
         {
