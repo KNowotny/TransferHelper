@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
+const msTimeoutDelay = 4000;
 
 @Component({
   selector: 'app-add-edit-player',
@@ -9,12 +10,12 @@ import { ApiService } from 'src/app/api.service';
 })
 export class AddEditPlayerComponent implements OnInit {
 
-  playerList$!:Observable<any[]>;
-  positionsList$!:Observable<any[]>;
+  playerList$!: Observable<any[]>;
+  positionsList$!: Observable<any[]>;
 
-  constructor(private service:ApiService) { }
+  constructor(private service: ApiService) { }
 
-  @Input() player:any;
+  @Input() player: any;
   id: number = 0;
   name: string = "";
   surname: string = "";
@@ -22,66 +23,68 @@ export class AddEditPlayerComponent implements OnInit {
   positionId!: number;
 
   ngOnInit(): void {
-    this.id = this.player.id;
-    this.name = this.player.name;
-    this.surname = this.player.surname;
-    this.birthdate = this.player.birthdate;
-    this.positionId = this.player.positionId;
-    this.playerList$ = this.service.getPlayerList();
-    this.positionsList$ = this.service.getPositionsList();
+    if (this.player) {
+      this.id = this.player.id;
+      this.name = this.player.name;
+      this.surname = this.player.surname;
+      this.birthdate = this.player.birthdate;
+      this.positionId = this.player.positionId;
+      this.playerList$ = this.service.getPlayerList();
+      this.positionsList$ = this.service.getPositionsList();
+    }
   }
 
-  addPlayer(){
+  addPlayer() {
     var player = {
-      name:this.name,
-      surname:this.surname,
-      birthdate:this.birthdate,
-      positionId:this.positionId
+      name: this.name,
+      surname: this.surname,
+      birthdate: this.birthdate,
+      positionId: this.positionId
     }
     this.service.addPlayer(player).subscribe(res => {
       var closeModalBtn = document.getElementById('add-edit-modal-close');
-      if(closeModalBtn) {
+      if (closeModalBtn) {
         closeModalBtn.click();
       }
 
       var showAddSuccess = document.getElementById('add-success-alert');
-      if(showAddSuccess){
+      if (showAddSuccess) {
         showAddSuccess.style.display = "block";
       }
 
-      setTimeout(function() {
-        if(showAddSuccess){
+      setTimeout(function () {
+        if (showAddSuccess) {
           showAddSuccess.style.display = "none";
         }
-      }, 4000);
+      }, msTimeoutDelay);
     })
   }
 
-  updatePlayer(){
+  updatePlayer() {
     var player = {
-      id:this.id,
-      name:this.name,
-      surname:this.surname,
-      birthdate:this.birthdate,
-      positionId:this.positionId
+      id: this.id,
+      name: this.name,
+      surname: this.surname,
+      birthdate: this.birthdate,
+      positionId: this.positionId
     }
-    var id:number = this.id;
+    var id: number = this.id;
     this.service.updatePlayer(id, player).subscribe(res => {
       var closeModalBtn = document.getElementById('add-edit-modal-close');
-      if(closeModalBtn) {
+      if (closeModalBtn) {
         closeModalBtn.click();
       }
 
       var showUpdateSuccess = document.getElementById('update-success-alert');
-      if(showUpdateSuccess){
+      if (showUpdateSuccess) {
         showUpdateSuccess.style.display = "block";
       }
 
-      setTimeout(function() {
-        if(showUpdateSuccess){
+      setTimeout(function () {
+        if (showUpdateSuccess) {
           showUpdateSuccess.style.display = "none";
         }
-      }, 4000);
+      }, msTimeoutDelay);
     })
   }
 }
