@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PlayerApiService } from 'src/app/player-api.service';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-add-edit-player',
@@ -12,7 +12,7 @@ export class AddEditPlayerComponent implements OnInit {
   playerList$!:Observable<any[]>;
   positionsList$!:Observable<any[]>;
 
-  constructor(private service:PlayerApiService) { }
+  constructor(private service:ApiService) { }
 
   @Input() player:any;
   id: number = 0;
