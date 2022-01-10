@@ -5,11 +5,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './add-edit-player.component.html',
   styleUrls: ['./add-edit-player.component.scss']
 })
-export class AddEditPlayerComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class AddEditPlayerComponent {
 }
