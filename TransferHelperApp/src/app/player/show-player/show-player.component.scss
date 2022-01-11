@@ -1,12 +1,14 @@
 #add-success-alert,
 #update-success-alert,
-#delete-success-alert {
+#delete-success-alert,
+#add-position-success-alert {
     display: none;
 }
 
 #add-success-alert,
 #update-success-alert,
-#delete-success-alert{
+#delete-success-alert,
+#add-position-success-alert {
     animation-name: fadeInAndOut;
     animation-duration: 5s;
 }

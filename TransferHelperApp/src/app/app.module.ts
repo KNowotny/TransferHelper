@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { PlayerComponent } from './player/player.component';
 import { ShowPlayerComponent } from './player/show-player/show-player.component';
 import { AddEditPlayerComponent } from './player/add-edit-player/add-edit-player.component';
+import { AddPositionComponent } from './player/add-position/add-position.component';
 import { ApiService } from './api.service';
 
 @NgModule({

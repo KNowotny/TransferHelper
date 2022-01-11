@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PlayerApiService } from 'src/app/player-api.service';
+import { ApiService } from 'src/app/api.service';
+const msTimeoutDelay = 4000;
 
 @Component({
   selector: 'app-add-position',
@@ -11,7 +12,7 @@ export class AddPositionComponent implements OnInit {
 
   positionsList$!:Observable<any[]>;
 
-  constructor(private service:PlayerApiService) { }
+  constructor(private service:ApiService) { }
 
   @Input() position:any;
   id:number = 0;
@@ -44,7 +45,7 @@ export class AddPositionComponent implements OnInit {
         if(showAddPositionSuccess){
           showAddPositionSuccess.style.display = "none";
         }
-      }, 4000);
+      }, msTimeoutDelay);
     })
   }
 }
