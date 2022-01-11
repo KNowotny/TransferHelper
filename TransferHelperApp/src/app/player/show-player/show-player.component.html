@@ -68,8 +68,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p *ngFor="let position of positionsList$|async">
-          {{position.id}} - {{position.positionName}}
+        <p *ngFor="let position of positionsList$|async let i = index">
+          {{i + 1}} - {{position.positionName}}
         </p>
       </div>
     </div>
