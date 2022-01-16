@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ApiService } from 'src/app/api.service';
+const msTimeoutDelay = 4000;
 
 @Component({
   selector: 'app-add-position',
@@ -7,9 +10,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddPositionComponent implements OnInit {
 
-  constructor() { }
+  positionsList$!:Observable<any[]>;
+
+  constructor(private service:ApiService) { }
+
+  @Input() position:any;
+  id:number = 0;
+  positionName:string = "";
 
   ngOnInit(): void {
+    if(this.position){
+      this.id = this.position.id;
+      this.positionName = this.position.positionName;
+    }
+    this.positionsList$ = this.service.getPositionsList();
   }
 
+  addPosition(){
+    var position = {
+      positionName:this.positionName
+    }
+    this.service.addPosition(position).subscribe(res => {
+      var closeModalBtn = document.getElementById('add-position-modal-close');
+      if(closeModalBtn) {
+        closeModalBtn.click();
+      }
+
+      var showAddPositionSuccess = document.getElementById('add-position-success-alert');
+      if(showAddPositionSuccess){
+        showAddPositionSuccess.style.display = "block";
+      }
+
+      setTimeout(function() {
+        if(showAddPositionSuccess){
+          showAddPositionSuccess.style.display = "none";
+        }
+      }, msTimeoutDelay);
+    })
+  }
 }
