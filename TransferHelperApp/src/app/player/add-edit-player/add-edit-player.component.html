@@ -1,12 +1,11 @@
 <form>
     <div class="mb-3">
         <label for="positionId" class="form-label">Player Position</label>
-        <input type="text" calss="form-control" name="positionId" [(ngModel)]="positionId"
-        *ngIf="player.id!=0" disabled>
-        <select class="form-control" name="positionId" id="positionId" [(ngModel)]="positionId"
-        *ngIf="player.id==0">
+        <input type="text" calss="form-control" name="positionId" [(ngModel)]="positionId" *ngIf="player.id!=0"
+            disabled>
+        <select class="form-control" name="positionId" id="positionId" [(ngModel)]="positionId" *ngIf="player.id==0">
             <option *ngFor="let type of positionsList$|async" [value]="type.id">{{type.positionName}}</option>
-    </select>
+        </select>
     </div>
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>

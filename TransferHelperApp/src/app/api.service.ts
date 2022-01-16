@@ -22,9 +22,9 @@ export class ApiService {
     return this.http.post(this.baseApiUrl + '/players', data);
   }
 
-  updatePlayer(id:number|string, data:any){
+  updatePlayer(id: number | string, data: any) {
     return this.http.put(this.baseApiUrl + `/players/${id}`, data);
- }
+  }
 
   deletePlayer(id: number | string) {
     return this.http.delete(this.baseApiUrl + `/players/${id}`)

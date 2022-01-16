@@ -10,39 +10,39 @@ const msTimeoutDelay = 4000;
 })
 export class AddPositionComponent implements OnInit {
 
-  positionsList$!:Observable<any[]>;
+  positionsList$!: Observable<any[]>;
 
-  constructor(private service:ApiService) { }
+  constructor(private service: ApiService) { }
 
-  @Input() position:any;
-  id:number = 0;
-  positionName:string = "";
+  @Input() position: any;
+  id: number = 0;
+  positionName: string = "";
 
   ngOnInit(): void {
-    if(this.position){
+    if (this.position) {
       this.id = this.position.id;
       this.positionName = this.position.positionName;
     }
     this.positionsList$ = this.service.getPositionsList();
   }
 
-  addPosition(){
+  addPosition() {
     var position = {
-      positionName:this.positionName
+      positionName: this.positionName
     }
     this.service.addPosition(position).subscribe(res => {
       var closeModalBtn = document.getElementById('add-position-modal-close');
-      if(closeModalBtn) {
+      if (closeModalBtn) {
         closeModalBtn.click();
       }
 
       var showAddPositionSuccess = document.getElementById('add-position-success-alert');
-      if(showAddPositionSuccess){
+      if (showAddPositionSuccess) {
         showAddPositionSuccess.style.display = "block";
       }
 
-      setTimeout(function() {
-        if(showAddPositionSuccess){
+      setTimeout(function () {
+        if (showAddPositionSuccess) {
           showAddPositionSuccess.style.display = "none";
         }
       }, msTimeoutDelay);

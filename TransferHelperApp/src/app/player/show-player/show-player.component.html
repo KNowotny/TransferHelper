@@ -1,5 +1,6 @@
 <!-- Add new position trigger modal -->
-<button type="button" class="btn btn-primary float-end m-1" data-bs-toggle="modal" data-bs-target="#addPositionBackdrop">
+<button type="button" class="btn btn-primary float-end m-1" data-bs-toggle="modal"
+  data-bs-target="#addPositionBackdrop">
   Add position
 </button>
 
@@ -75,13 +76,14 @@
 </div>
 
 <!-- Add position Modal -->
-<div class="modal fade" id="addPositionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="addPositionBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-        (click)="modalClose()" id='add-position-modal-close'></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalClose()"
+          id='add-position-modal-close'></button>
       </div>
       <div class="modal-body">
         <app-add-position> </app-add-position>
