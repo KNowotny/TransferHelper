@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-show-positions',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowPositionsComponent implements OnInit {
 
-  constructor() { }
+  positionsList$!: Observable<any[]>;
+  positionsList: any = [];
 
-  ngOnInit(): void {
+  positionsMap: Map<number, string> = new Map()
+
+  constructor(private service: ApiService) {
   }
 
+  ngOnInit(): void {
+    this.positionsList$ = this.service.getPositionsList();
+  }
+
+  public positionRefresh() {
+    this.positionsList$ = this.service.getPositionsList();
+  }
 }
