@@ -1,3 +1,4 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
@@ -13,6 +14,8 @@ export class ShowPlayerComponent implements OnInit {
   positionsList$!:Observable<any[]>; 
   positionsList:any=[];
 
+
+  //Map
   positionsMap:Map<number, string> = new Map()
 
   constructor(private service:ApiService) { }
@@ -21,6 +24,55 @@ export class ShowPlayerComponent implements OnInit {
     this.playerList$ = this.service.getPlayerList();
     this.positionsList$ = this.service.getPositionsList();
     this.refreshPlayersPositionMap();
+  }
+
+  modalTitle:string = '';
+  activateAddEditPlayerComponent:boolean = false;
+  player:any;
+
+  modalAdd(){
+    this.player = {
+      id:0,
+      name:null,
+      surname:null,
+      birthdate:null,
+      position:null
+    }
+    this.modalTitle = "Add Player";
+    this.activateAddEditPlayerComponent = true;
+  }
+
+  modalClose(){
+    this.activateAddEditPlayerComponent = false;
+    this.playerList$ = this.service.getPlayerList();
+  }
+
+  modalEdit(item:any){
+    this.player = item;
+    this.modalTitle = "EditPlayer";
+    this.activateAddEditPlayerComponent = true;
+  }
+
+  delete(item:any){
+    if(confirm(`Are you sure you want delete player ${item.name} ${item.surname}?`)){
+      this.service.deletePlayer(item.id).subscribe(res => {
+        var deleteModalBtn = document.getElementById('add-edit-modal-close');
+        if(deleteModalBtn) {
+          deleteModalBtn.click();
+        }
+  
+        var showDeleteSuccess = document.getElementById('delete-success-alert');
+        if(showDeleteSuccess){
+          showDeleteSuccess.style.display = "block";
+        }
+  
+        setTimeout(function() {
+          if(showDeleteSuccess){
+            showDeleteSuccess.style.display = "none";
+          }
+        }, 4000);
+      })
+    }
   }
 
   refreshPlayersPositionMap() {

@@ -1,28 +1,56 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-secondary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<!-- Add new player trigger modal -->
+<button type="button" class="btn btn-primary float-end m-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+  (click)="modalAdd()">
+  Add player
+</button>
+
+<!-- Show position trigger modal -->
+<button type="button" class="btn btn-secondary float-end m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Show players positions
 </button>
 
 <table class="table table-striped">
   <thead>
-    <th> Id </th>
-    <th> Name </th>
-    <th> Surname </th>
-    <th> Birthdate </th>
-    <th> Position </th>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Birthdate</th>
+    <th>Position</th>
+    <th>Options</th>
   </thead>
   <tbody>
-    <tr *ngFor="let item of playerList$|async">
-      <td> {{item.id}} </td>
-      <td> {{item.name}} </td>
-      <td> {{item.surname}} </td>
-      <td> {{item.birtdate}} </td>
-      <td> {{positionsMap.get(item.positionId)}} </td>
+    <tr *ngFor="let item of playerList$|async let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.surname}}</td>
+      <td>{{item.birthdate | date:'mediumDate'}}</td>
+      <td>{{positionsMap.get(item.positionId)}}</td>
+      <td>
+        <button class="btn btn-outline-primary me-1 mb-1" (click)="modalEdit(item)" data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop">
+          <i class='far fa-edit'></i>
+        </button>
+        <button class="btn btn-outline-danger me-1 mb-1" (click)="delete(item)">
+          <i class='far fa-trash-alt'></i>
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
 
-<!-- Modal -->
+<div class="alert alert-success" role="alert" id="add-success-alert">
+  Player successfully added
+</div>
+
+<div class="alert alert-success" role="alert" id="update-success-alert">
+  Player successfully updated
+</div>
+
+<div class="alert alert-success" role="alert" id="delete-success-alert">
+  Player successfully deleted
+</div>
+
+<!-- Show player position Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -34,6 +62,25 @@
         <p *ngFor="let position of positionsList$|async">
           {{position.id}} - {{position.positionName}}
         </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Add or edit player Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalClose()"
+          id='add-edit-modal-close'></button>
+      </div>
+      <div class="modal-body">
+        <app-add-edit-player [player]="player" *ngIf="activateAddEditPlayerComponent"> </app-add-edit-player>
       </div>
     </div>
   </div>
