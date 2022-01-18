@@ -1,4 +1,3 @@
-import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
