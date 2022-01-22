@@ -1,4 +1,4 @@
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,14 +8,18 @@ import { AppComponent } from './app.component';
 import { PlayerComponent } from './player/player.component';
 import { ShowPlayerComponent } from './player/show-player/show-player.component';
 import { AddEditPlayerComponent } from './player/add-edit-player/add-edit-player.component';
+import { AddPositionComponent } from './position/add-position/add-position.component';
 import { ApiService } from './api.service';
+import { ShowPositionsComponent } from './position/show-positions/show-positions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerComponent,
     ShowPlayerComponent,
-    AddEditPlayerComponent
+    AddEditPlayerComponent,
+    AddPositionComponent,
+    ShowPositionsComponent
   ],
   imports: [
     BrowserModule,
